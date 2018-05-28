@@ -26,6 +26,7 @@ RUN mkdir -p /root/.ssh
 ADD id_rsa /root/.ssh/id_rsa
 RUN chmod 700 /root/.ssh/id_rsa
 RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+RUN echo "    IdentityFile /root/.ssh/id_rsa" >> /etc/ssh/ssh_config
 
 # install the DB drivers we need to test against databases, as well as git and nodejs
 RUN apt-get update && \
