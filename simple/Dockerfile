@@ -35,7 +35,7 @@ RUN apt-get update && \
         pip \
         pytest && \
         \
-    pip install -U \ 
+    pip install -U \
         iotile-core \
         iotile-build \
         iotile-sensorgraph \
@@ -51,8 +51,23 @@ RUN apt-get update && \
         iotile-pcb \
             --extra-index-url https://pypi.fury.io/sKv8PCZngFJ-g_oEqjfc/iotile/ && \
         \
+    iotile registry set build:show-commands True && \
     iotile registry set arch:github_user lekkizogloy@arch-iot.com && \
-    iotile registry set arch:github_token 1d1a640a4b1d183702db3480cabd3b863964b352
+    iotile registry set arch:github_token XX4bb4e00fce474a73959e1aad32d5854f4e18XX
+    #First 2 digits are 5 and 0
+    #Last 2 digits are 0 and 3
 
+RUN mkdir -p /tmp/arm/
 
+COPY gcc-arm-none-eabi-7-2017-q4-major-linux.tar.bz2 /tmp/arm/
+COPY gnuarmeclipse-qemu-debian64-2.8.0-201612271623-dev.tgz /tmp/arm/
+
+RUN cd /tmp/arm && \
+    tar -xvf gcc-arm-none-eabi-7-2017-q4-major-linux.tar.bz2 && \
+    cd /usr/local/bin && \
+    ln -s /tmp/arm/gcc-arm-none-eabi-7-2017-q4-major/bin/* . && \
+    cd /tmp/arm && \
+    tar -xvf gnuarmeclipse-qemu-debian64-2.8.0-201612271623-dev.tgz
+
+ENV PATH /tmp/arm/qemu/2.8.0-201612271623-dev/bin:$PATH
 
