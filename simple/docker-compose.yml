@@ -24,8 +24,10 @@ services:
       - 5432
 
   worker:
-      #image: "buildbot/buildbot-worker:master"
     build: .
+    privileged: true
+    devices:
+      - "/dev/tty.usbmodem1:/dev/tty.usbmodem1"
     environment:
       BUILDMASTER: buildbot
       BUILDMASTER_PORT: 9989
