@@ -49,6 +49,10 @@ RUN apt-get update && \
         iotile-ship \
         arch-build \
         iotile-pcb \
-            --extra-index-url https://pypi.fury.io/sKv8PCZngFJ-g_oEqjfc/iotile/
+            --extra-index-url https://pypi.fury.io/sKv8PCZngFJ-g_oEqjfc/iotile/ && \
+        \
+    iotile registry set arch:github_user lekkizogloy@arch-iot.com && \
+    iotile registry set arch:github_token 1d1a640a4b1d183702db3480cabd3b863964b352
+
 
 
