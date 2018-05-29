@@ -30,9 +30,6 @@ RUN echo "    IdentityFile /root/.ssh/id_rsa" >> /etc/ssh/ssh_config
 
 # install the DB drivers we need to test against databases, as well as git and nodejs
 RUN apt-get update && \
-    mkdir -p /tmp/bb && \
-    virtualenv /tmp/bb/sandbox && \
-    . /tmp/bb/sandbox/bin/activate && \
     \
     pip install -U \
         pip \
